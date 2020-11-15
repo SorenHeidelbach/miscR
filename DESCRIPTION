@@ -1,0 +1,12 @@
+Package: heidel
+Type: Package
+Title: Functions that have some utility for me at some point
+Version: 0.1.0
+Author: Soren Heidelbach <heidelbach96@gmail.com>
+Maintainer: Soren Heidelbach <heidelbach96@gmail.com>
+Description: Some functions that does something
+    new line.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
