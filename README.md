@@ -7,46 +7,81 @@
 
 <!-- badges: end -->
 
-The goal of heidel is to …
+This packages is just some random functions that are used for very
+specific tasks during my study. It is only to share with collaborators
+and between workstations.
 
 ## Installation
 
-You can install the released version of heidel from
-[CRAN](https://CRAN.R-project.org) with:
+Install package using devtools
 
 ``` r
-install.packages("heidel")
+if(!require("devtools") install.packages("devtools"))
+library(devtools)
+devtools::install_github("SorenHeidelbach/heidel")
 ```
 
-## Example
+# Usage examples
 
-This is a basic example which shows you how to solve a common problem:
+## count\_unique
 
 ``` r
 library(heidel)
-## basic example code
+
+counted = count_unique(iris, 
+                       subset_col = "Species", 
+                       count_col = 1)
+head(counted)
+#>   Sepal.Length setosa versicolor virginica
+#> 1          4.9      1          1         4
+#> 2          5.6      1          5         0
+#> 3          5.7      1          5         2
+#> 4          5.8      3          3         1
+#> 5          5.9      1          2         0
+#> 6            6      2          4         0
+species <- iris$Species[c(1,60)]
+counted = count_unique(iris, 
+                       subset_col = "Species", 
+                       count_col = "Sepal.Length",
+                       subset_values = species)
+head(counted)
+#>   Sepal.Length setosa versicolor
+#> 1          4.9      1          4
+#> 2            5      2          8
+#> 3          5.1      1          8
+#> 4          5.2      1          3
+#> 5          5.4      1          5
+#> 6          5.5      5          2
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## tax\_lineage\_from\_accesion
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "NR_042763"))
+#>           rank       NZ_CP027599.1           NR_042763
+#> 8 superkingdom            Bacteria            Bacteria
+#> 4      kingdom                <NA>                <NA>
+#> 6       phylum      Proteobacteria      Proteobacteria
+#> 1        class Gammaproteobacteria Alphaproteobacteria
+#> 5        order    Enterobacterales    Rhodospirillales
+#> 2       family  Enterobacteriaceae    Acetobacteraceae
+#> 3        genus         Escherichia    Komagataeibacter
+#> 7      species                coli           rhaeticus
+
+tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "7"),
+                          custom_taxonomies = c("clade", "genus", "species"))
+#>       rank NZ_CP027599.1            7
+#> 1    clade          <NA> Opisthokonta
+#> 15   genus   Escherichia          Bos
+#> 16 species          coli       taurus
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
+## evaluate\_contig\_coverage
 
-You can also embed plots, for example:
+``` r
+# Some large contigs have been removed from depth file to reduce file size.
+evaluate_contig_coverage(path = "depth.AF1_seqtk.filt.txt", 
+                         parametric = T) 
+```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
+<img src="man/figures/README-evaluate_contig_coverage-1.png" width="100%" />

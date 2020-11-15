@@ -2,18 +2,20 @@
 % Please edit documentation in R/condense_blast.R
 \name{condense_blast}
 \alias{condense_blast}
-\title{Take a blast out put and count number of unique hits}
+\title{Take a blast out put and count_col number of unique hits}
 \usage{
-condense_blast(df, query_subset = NA)
+condense_blast(data, subset_values = NA, subset_col = 1, count_col = 2)
 }
 \arguments{
-\item{df}{Data frame of the BLAST output}
+\item{data}{Data frame of the BLAST output}
 
-\item{query_subset}{Subset results by character string in query name}
+\item{subset_values}{Subset results by character string in query name}
+
+\item{count_col}{The countumn to count unique entries from. Can be countumn name or index}
 }
 \value{
 Dataframe with unique blast results and number of hits
 }
 \description{
-Take a blast out put and count number of unique hits
+Take a blast out put and count_col number of unique hits
 }

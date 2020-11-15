@@ -18,37 +18,45 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of heidel is to ...
+This packages is just some random functions that are used for very specific tasks during my study. It is only to share with collaborators and between workstations.
 
 ## Installation
-
-You can install the released version of heidel from [CRAN](https://CRAN.R-project.org) with:
-
+Install package using devtools
 ``` r
-install.packages("heidel")
+if(!require("devtools") install.packages("devtools"))
+library(devtools)
+devtools::install_github("SorenHeidelbach/heidel")
 ```
+# Usage examples
+## count_unique
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
+```{r count_unique, warning = F}
 library(heidel)
-## basic example code
+
+counted = count_unique(iris, 
+                       subset_col = "Species", 
+                       count_col = 1)
+head(counted)
+species <- iris$Species[c(1,60)]
+counted = count_unique(iris, 
+                       subset_col = "Species", 
+                       count_col = "Sepal.Length",
+                       subset_values = species)
+head(counted)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+## tax_lineage_from_accesion
+```{r tax_lineage_from_accesion, warning = F}
+tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "NR_042763"))
 
-```{r cars}
-summary(cars)
+tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "7"),
+                          custom_taxonomies = c("clade", "genus", "species"))
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+## evaluate_contig_coverage
+```{r evaluate_contig_coverage, warning = F}
+# Some large contigs have been removed from depth file to reduce file size.
+evaluate_contig_coverage(path = "depth.AF1_seqtk.filt.txt", 
+                         parametric = T) 
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

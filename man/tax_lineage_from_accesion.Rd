@@ -10,7 +10,7 @@ tax_lineage_from_accesion(accession, custom_taxonomies = NA)
 \item{accession}{Accesion ID for the nucleotide database}
 }
 \value{
-
+Dataframe with taxonomic info for each accession
 }
 \description{
 Get full taxonomic lineage from accession nucleotide ID

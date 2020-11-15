@@ -2,7 +2,7 @@
 #'
 #' @param accession Accesion ID for the nucleotide database
 #'
-#' @return
+#' @return Dataframe with taxonomic info for each accession
 #' @export
 #' @import rentrez
 #' @import XML
@@ -10,6 +10,7 @@
 #' @import tidyr
 #'
 #' @examples
+#' tax_lineage_from_accesion(NZ_CP027599.1")
 tax_lineage_from_accesion <- function(accession, custom_taxonomies = NA){
  # Checking inputs
  if (class(accession) != "character"){
@@ -48,6 +49,8 @@ tax_lineage_from_accesion <- function(accession, custom_taxonomies = NA){
          # only take taxonomiuc info in the specified levels
          d <- as.data.frame(d[d$rank %in% taxonomies,])
          d_all <- merge(d_all, d, by = "rank", all = T,)
+
  }
+ d_all <- d_all[match(taxonomies, d_all$rank),]
  return(d_all)
 }
