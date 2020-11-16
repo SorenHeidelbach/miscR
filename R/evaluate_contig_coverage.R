@@ -6,12 +6,9 @@
 #' @param log10_axis Normal or logarithmic scale for axis
 #' @param parametric FALSE: median, Q97.5/2.5 and Q100/0. TRUE: mean, SD and 95 confidence interval
 #'
-#' @import data.table
 #' @import tidyr
-#' @import dplyr
 #' @import ggplot2
-#' @import ggforce
-#' @import grid
+#' @import data.table
 #' @return Plot with coverage distrubution for each contig
 #' @export
 #'

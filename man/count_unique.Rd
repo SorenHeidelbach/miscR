@@ -2,24 +2,22 @@
 % Please edit documentation in R/count_unique.R
 \name{count_unique}
 \alias{count_unique}
-\title{Takes a dataframe and count_col unique entries of a column
-by grouping of id in another column.}
+\title{Count unique entries of one column in grouping of another column}
 \usage{
-count_unique(data, subset_col, count_col, subset_values = NA)
+count_unique(data, subset_by, count_col, subset_values = NA)
 }
 \arguments{
 \item{data}{Dataframe.}
 
-\item{subset_col}{Column to group counting by}
+\item{subset_by}{Column to group by}
 
 \item{count_col}{Column ID to count unique entries from.}
 
-\item{subset}{Character vector with entries to subset by.}
+\item{subset_values}{Entries in `subset_by` to group by. If NA, then all entries are used}
 }
 \value{
 Dataframe with number of unique entries in each subgroup
 }
 \description{
-Takes a dataframe and count_col unique entries of a column
-by grouping of id in another column.
+Count unique entries of one column in grouping of another column
 }

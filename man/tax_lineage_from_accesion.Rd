@@ -4,10 +4,12 @@
 \alias{tax_lineage_from_accesion}
 \title{Get full taxonomic lineage from accession nucleotide ID}
 \usage{
-tax_lineage_from_accesion(accession, custom_taxonomies = NA)
+tax_lineage_from_accesion(accession, custom_tax = NA)
 }
 \arguments{
 \item{accession}{Accesion ID for the nucleotide database}
+
+\item{custom_tax}{Character vector with taxonomic levels to return}
 }
 \value{
 Dataframe with taxonomic info for each accession

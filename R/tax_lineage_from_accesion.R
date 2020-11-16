@@ -1,6 +1,7 @@
 #' Get full taxonomic lineage from accession nucleotide ID
 #'
 #' @param accession Accesion ID for the nucleotide database
+#' @param custom_tax Character vector with taxonomic levels to return
 #'
 #' @return Dataframe with taxonomic info for each accession
 #' @export
@@ -11,18 +12,19 @@
 #'
 #' @examples
 #' tax_lineage_from_accesion(NZ_CP027599.1")
-tax_lineage_from_accesion <- function(accession, custom_taxonomies = NA){
+tax_lineage_from_accesion <- function(accession, custom_tax = NA){
  # Checking inputs
  if (class(accession) != "character"){
          print("Please input the accession as a character/character vector")
  }
+
  tax_allowed <- c("superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species")
- if (is.na(custom_taxonomies)){
+ if (is.na(custom_tax)){
          taxonomies <- tax_allowed
- } else if(all(!(custom_taxonomies %in% tax_allowed))){
-         print(paste(paste("Only", tax_allowed, "are allowed for 'custom_taxonomies'")))
+ } else if(all(!(custom_tax %in% tax_allowed))){
+         print(paste(paste("Only", tax_allowed, "are allowed for 'custom_tax'")))
  } else{
-         taxonomies <- custom_taxonomies
+         taxonomies <- custom_tax
  }
  # data processing
  d_all <- data.frame(rank = taxonomies)
@@ -32,7 +34,7 @@ tax_lineage_from_accesion <- function(accession, custom_taxonomies = NA){
          # look id for the taxonomic database
          id_tax <- entrez_link(dbfrom = "nucleotide", id = id_nuc$ids, db = "taxonomy")
          # get taxonomic info
-         tax <- entrez_fetch(db = "taxonomy", id = id_tax$links$nuccore_taxonomy, rettype = "xml", parse = TRUE)
+         tax <- entrez_fetch(db = "taxonomy", id = id_tax$links$nuccore_taxonomy, rettype = "xml", parsed = TRUE)
          tax_list <- xmlToList(tax)
          # make data frame with rank and name
          rank <- data.frame(rank = sapply(tax_list$Taxon$LineageEx, function(x) x$Rank))
