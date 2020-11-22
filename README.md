@@ -29,7 +29,7 @@ devtools::install_github("SorenHeidelbach/heidel")
 library(heidel)
 
 counted = count_unique(iris, 
-                       subset_col = "Species", 
+                       subset_by = "Species", 
                        count_col = 1)
 head(counted)
 #>   Sepal.Length setosa versicolor virginica
@@ -41,7 +41,7 @@ head(counted)
 #> 6            6      2          4         0
 species <- iris$Species[c(1,60)]
 counted = count_unique(iris, 
-                       subset_col = "Species", 
+                       subset_by = "Species", 
                        count_col = "Sepal.Length",
                        subset_values = species)
 head(counted)
@@ -69,7 +69,7 @@ tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "NR_042763"))
 #> 7      species                coli           rhaeticus
 
 tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "7"),
-                          custom_taxonomies = c("clade", "genus", "species"))
+                          custom_tax = c("clade", "genus", "species"))
 #>       rank NZ_CP027599.1            7
 #> 1    clade          <NA> Opisthokonta
 #> 15   genus   Escherichia          Bos
@@ -85,3 +85,11 @@ evaluate_contig_coverage(path = "depth.AF1_seqtk.filt.txt",
 ```
 
 <img src="man/figures/README-evaluate_contig_coverage-1.png" width="100%" />
+
+``` r
+
+evaluate_contig_coverage(path = "depth.AF1_seqtk.filt.txt", 
+                         parametric = F) 
+```
+
+<img src="man/figures/README-evaluate_contig_coverage-2.png" width="100%" />

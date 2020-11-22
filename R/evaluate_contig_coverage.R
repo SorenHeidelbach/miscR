@@ -37,7 +37,7 @@ evaluate_contig_coverage <-  function(path,
   strsplit("_") %>%
   sapply(function(x) x[2])
  # plot
- if (parametric){
+ if (!parametric){
   p <- ggplot(cov, aes(x=size, y=Q50)) +
    geom_errorbar(aes(ymin=Q0,   ymax=Q100 ),  size=0.4, alpha = 0.2) +
    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5 ), size=0.4)

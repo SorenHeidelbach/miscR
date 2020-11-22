@@ -34,12 +34,12 @@ devtools::install_github("SorenHeidelbach/heidel")
 library(heidel)
 
 counted = count_unique(iris, 
-                       subset_col = "Species", 
+                       subset_by = "Species", 
                        count_col = 1)
 head(counted)
 species <- iris$Species[c(1,60)]
 counted = count_unique(iris, 
-                       subset_col = "Species", 
+                       subset_by = "Species", 
                        count_col = "Sepal.Length",
                        subset_values = species)
 head(counted)
@@ -50,7 +50,7 @@ head(counted)
 tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "NR_042763"))
 
 tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "7"),
-                          custom_taxonomies = c("clade", "genus", "species"))
+                          custom_tax = c("clade", "genus", "species"))
 ```
 
 ## evaluate_contig_coverage
@@ -58,5 +58,8 @@ tax_lineage_from_accesion(accession = c("NZ_CP027599.1", "7"),
 # Some large contigs have been removed from depth file to reduce file size.
 evaluate_contig_coverage(path = "depth.AF1_seqtk.filt.txt", 
                          parametric = T) 
+
+evaluate_contig_coverage(path = "depth.AF1_seqtk.filt.txt", 
+                         parametric = F) 
 ```
 
