@@ -16,7 +16,7 @@ and between workstations.
 Install package using devtools
 
 ``` r
-if(!require("devtools") install.packages("devtools"))
+if(!require("devtools")) install.packages("devtools")
 library(devtools)
 devtools::install_github("SorenHeidelbach/heidel")
 ```
