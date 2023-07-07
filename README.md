@@ -18,7 +18,7 @@ Install package using devtools
 ``` r
 if(!require("devtools")) install.packages("devtools")
 library(devtools)
-devtools::install_github("SorenHeidelbach/heidel")
+devtools::install_github("SorenHeidelbach/miscR")
 ```
 
 # Usage examples
@@ -26,7 +26,7 @@ devtools::install_github("SorenHeidelbach/heidel")
 ## count\_unique
 
 ``` r
-library(heidel)
+library(miscR)
 
 counted = count_unique(iris, 
                        subset_by = "Species", 
